@@ -1,0 +1,84 @@
+
+.carousel-control-prev-icon {
+  background-image: url("../../../../assets/images/icon_left.svg");
+}
+
+.carousel-control-next-icon {
+  background-image: url("../../../../assets/images/icon_right.svg");
+}
+
+.scale-change {
+  scale: 100%;
+}
+
+
+#accordion a span.title {
+  float: left;
+  display: block;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+#accordion a span.ui-icon {
+  height: 20px;
+  padding: 12px;
+  margin-right: 5px;
+}
+
+.ui-icon, .ui-widget-content .ui-icon , .ui-state-hover .ui-icon{
+  background-image: url("../../../../assets/images/next.svg");
+  rotate: 180deg;
+  padding: 12px;
+  margin-right: 20px;
+  position: absolute;
+  right: 0;
+}
+
+
+.ui-state-active .ui-icon, .ui-button:active .ui-icon {
+  background-image: url("../../../../assets/images/next.svg");
+  padding: 12px;
+  margin-right: 20px;
+  rotate: -90deg;
+}
+
+
+
+.popup {
+
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+.popup-content {
+  background: #fff;
+  padding: 50px;
+  border-radius: 10px;
+  text-align: center;
+  width: 800px;
+  height: 200px;
+  box-shadow: 0px 0px 10px #000;
+  margin: 250px auto auto auto;
+}
+
+
+
+
+
+@media screen and (max-width: 450px) {
+  .scale-change {
+    scale: 70%;
+  }
+
+  .carousel-caption h2 {
+    font-size: small;
+  }
+
+  .carousel-caption p {
+    font-size: small;
+  }
+
+}

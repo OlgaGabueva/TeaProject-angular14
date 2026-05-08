@@ -1,0 +1,109 @@
+
+
+
+<!--Форма заказа-->
+
+<div class="container py-5">
+
+  <div  id="make_order">
+
+    <h4 class=" text-center wow animate__swing" id="form-name">{{form_name}}</h4>
+
+    <form class=" col-md-6 mx-auto mb-5 wow animate__zoomIn" id="form" [formGroup]="form"  *ngIf="showForm">
+      <div class="row g-3" >
+
+        <div class="col-12">
+          <label for="product_title" class="form-label"></label>
+          <input type="text" class="form-control" id="product_title"
+                 formControlName="product_title" >
+        </div>
+
+
+        <div class="col-sm-4">
+          <label for="name" class="form-label"
+                 [class]="{'text-danger': form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)}">Имя</label>
+          <input type="text" class="form-control" id="name" placeholder="Имя"
+                 formControlName="name" required
+                 pattern="[а-яА-ЯёЁa-zA-Z]+"
+                 [class]="{'border-danger': form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched) }">
+        </div>
+
+        <div class="col-sm-4">
+          <label for="surname" class="form-label"
+                 [class]="{'text-danger': form.get('surname')?.invalid && (form.get('surname')?.dirty || form.get('surname')?.touched)}">Фамилия</label>
+          <input type="text" class="form-control" id="surname" placeholder="Фамилия"
+                 formControlName="surname"  required
+                 pattern="[а-яА-ЯёЁa-zA-Z]+"
+                 [class]="{'border-danger': form.get('surname')?.invalid && (form.get('surname')?.dirty || form.get('surname')?.touched)}">
+        </div>
+
+        <div class="col-sm-4">
+          <label for="phone" class="form-label"
+                 [class]="{'text-danger': form.get('phone')?.invalid && (form.get('phone')?.dirty || form.get('phone')?.touched)}">Телефон</label>
+          <input type="text" class="form-control" id="phone" placeholder="Номер телефона"
+                 formControlName="phone"  required
+                 pattern="^\+?\d{11}$"
+                 [class]="{'border-danger': form.get('phone')?.invalid && (form.get('phone')?.dirty || form.get('phone')?.touched)}">
+        </div>
+
+        <div class="col-sm-6">
+          <label for="country" class="form-label"
+                 [class]="{'text-danger': form.get('country')?.invalid && (form.get('country')?.dirty || form.get('country')?.touched)}">Страна</label>
+          <input type="text" class="form-control" id="country" placeholder="Страна"
+                 formControlName="country"  required
+                 [class]="{'border-danger': form.get('country')?.invalid && (form.get('country')?.dirty || form.get('country')?.touched)}">
+        </div>
+
+        <div class="col-sm-6">
+          <label for="index" class="form-label"
+                 [class]="{'text-danger': form.get('index')?.invalid && (form.get('index')?.dirty || form.get('index')?.touched)}">Индекс</label>
+          <input type="text" class="form-control" id="index" placeholder="Индекс из 6 символов"
+                 formControlName="index"  required
+                 pattern="^\d{6}$"
+                 [class]="{'border-danger': form.get('index')?.invalid && (form.get('index')?.dirty || form.get('index')?.touched)}">
+        </div>
+
+        <div class="col-12">
+          <label for="address" class="form-label"
+                 [class]="{'text-danger': form.get('address')?.invalid && (form.get('address')?.dirty || form.get('address')?.touched)}">Адрес</label>
+          <input type="text" class="form-control" id="address" placeholder="Адрес"
+                 formControlName="address"  required
+                 pattern="^[а-яА-ЯёЁa-zA-Z0-9-\s\/]+$"
+                 [class]="{'border-danger': form.get('address')?.invalid && (form.get('address')?.dirty || form.get('address')?.touched)}">
+        </div>
+
+        <div class="col-12">
+          <label for="address" class="form-label">Комментарий к заказу</label>
+          <input type="text" class="form-control" id="comment" placeholder="Комментарий"
+                 formControlName="comment" >
+        </div>
+
+        <div class="col-4">
+          <button type="button" class="btn btn-primary px-5 hvr-hollow" id="button"  (click)="sendOrder()">Отправить</button>
+        </div>
+
+        <div class="col-12 text-danger " id="error"  *ngIf="showError" >
+          <p>Произошла ошибка. Попробуйте еще раз!</p>
+        </div>
+
+      </div>
+
+    </form>
+
+
+  </div>
+
+  <div *ngIf="loader" class="loader-bg">
+    <div class="loader">
+
+    </div>
+
+  </div>
+
+
+
+
+
+</div>
+
+
