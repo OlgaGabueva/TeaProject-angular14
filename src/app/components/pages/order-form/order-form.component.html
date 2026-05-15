@@ -9,7 +9,7 @@
 
     <h4 class=" text-center wow animate__swing" id="form-name">{{form_name}}</h4>
 
-    <form class=" col-md-6 mx-auto mb-5 wow animate__zoomIn" id="form" [formGroup]="form"  *ngIf="showForm">
+    <form class=" col-md-6 mx-auto mb-5 wow animate__zoomIn" id="form" [formGroup]="form"  *ngIf="showForm" (ngSubmit)="sendOrder()">
       <div class="row g-3" >
 
         <div class="col-12">
@@ -26,7 +26,10 @@
                  formControlName="name" required
                  pattern="[а-яА-ЯёЁa-zA-Z]+"
                  [class]="{'border-danger': form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched) }">
-        </div>
+          <div *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched)">
+            <div class="text-danger"> Только буквы! </div>
+          </div>
+          </div>
 
         <div class="col-sm-4">
           <label for="surname" class="form-label"
@@ -35,6 +38,9 @@
                  formControlName="surname"  required
                  pattern="[а-яА-ЯёЁa-zA-Z]+"
                  [class]="{'border-danger': form.get('surname')?.invalid && (form.get('surname')?.dirty || form.get('surname')?.touched)}">
+          <div *ngIf="form.get('surname')?.invalid && (form.get('surname')?.dirty || form.get('surname')?.touched)">
+            <div class="text-danger" >Только буквы! </div>
+          </div>
         </div>
 
         <div class="col-sm-4">
@@ -44,6 +50,10 @@
                  formControlName="phone"  required
                  pattern="^\+?\d{11}$"
                  [class]="{'border-danger': form.get('phone')?.invalid && (form.get('phone')?.dirty || form.get('phone')?.touched)}">
+          <div *ngIf="form.get('phone')?.invalid && (form.get('phone')?.dirty || form.get('phone')?.touched)">
+            <div class="text-danger" >+XXXXXXXXXXX </div>
+
+          </div>
         </div>
 
         <div class="col-sm-6">
@@ -52,6 +62,10 @@
           <input type="text" class="form-control" id="country" placeholder="Страна"
                  formControlName="country"  required
                  [class]="{'border-danger': form.get('country')?.invalid && (form.get('country')?.dirty || form.get('country')?.touched)}">
+          <div *ngIf="form.get('country')?.invalid && (form.get('country')?.dirty || form.get('country')?.touched)">
+            <div class="text-danger" >Введите страну! </div>
+
+          </div>
         </div>
 
         <div class="col-sm-6">
@@ -61,6 +75,9 @@
                  formControlName="index"  required
                  pattern="^\d{6}$"
                  [class]="{'border-danger': form.get('index')?.invalid && (form.get('index')?.dirty || form.get('index')?.touched)}">
+          <div *ngIf="form.get('index')?.invalid && (form.get('index')?.dirty || form.get('index')?.touched)">
+            <div class="text-danger" >123456 </div>
+          </div>
         </div>
 
         <div class="col-12">
@@ -70,6 +87,9 @@
                  formControlName="address"  required
                  pattern="^[а-яА-ЯёЁa-zA-Z0-9-\s\/]+$"
                  [class]="{'border-danger': form.get('address')?.invalid && (form.get('address')?.dirty || form.get('address')?.touched)}">
+          <div *ngIf="form.get('address')?.invalid && (form.get('address')?.dirty || form.get('address')?.touched)">
+            <div class="text-danger" >Допустимые символы: буквы,цифры,пробел,дефис,слеш </div>
+          </div>
         </div>
 
         <div class="col-12">
@@ -79,7 +99,7 @@
         </div>
 
         <div class="col-4">
-          <button type="button" class="btn btn-primary px-5 hvr-hollow" id="button"  (click)="sendOrder()">Отправить</button>
+          <button  class="btn btn-primary px-5 hvr-hollow" id="button" [disabled]="form.invalid"> Отправить </button>
         </div>
 
         <div class="col-12 text-danger " id="error"  *ngIf="showError" >
@@ -105,5 +125,6 @@
 
 
 </div>
+
 
 

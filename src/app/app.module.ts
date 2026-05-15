@@ -11,6 +11,7 @@ import { OrderFormComponent } from './components/pages/order-form/order-form.com
 import { FooterComponent } from './components/common/footer/footer.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgbModule,
 
 
   ],

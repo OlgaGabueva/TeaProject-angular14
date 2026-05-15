@@ -7,11 +7,10 @@ import {SaveSingleProductService} from "../../../services/save-single-product.se
   templateUrl: './catalog-single-product.component.html',
   styleUrls: ['./catalog-single-product.component.css']
 })
+
 export class CatalogSingleProductComponent implements OnInit {
 
-
-
-  constructor( private SaveSingleProductService:SaveSingleProductService) {
+  constructor( private SaveSingleProductService:SaveSingleProductService ) {
 
   }
 
@@ -21,11 +20,6 @@ export class CatalogSingleProductComponent implements OnInit {
 
       this.product = this.SaveSingleProductService.getProduct();
       console.log(this.product);
-
-
-
-
-
 
 
   }

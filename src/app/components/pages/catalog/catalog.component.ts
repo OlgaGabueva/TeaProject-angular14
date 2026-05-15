@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {TeaType} from "../../../types/tea.type";
 import {SaveSingleProductService} from "../../../services/save-single-product.service";
 import {tap} from "rxjs";
+import {HttpProductService} from "../../../services/product.service";
 
 
 @Component({
@@ -12,7 +12,9 @@ import {tap} from "rxjs";
 })
 export class CatalogComponent implements OnInit {
 
-  constructor( private  http: HttpClient, private SaveSingleProductService: SaveSingleProductService ) { }
+  constructor(
+               private SaveSingleProductService: SaveSingleProductService ,
+               private HttpProductService:HttpProductService) { }
 
   products: TeaType[] = [];
   loader: boolean = false;
@@ -21,7 +23,7 @@ export class CatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loader = true;
-    this.http.get<TeaType[]>('https://testologia.ru/tea')
+    this.HttpProductService.getProducts()
       .pipe(
         tap( () => {
           this.loader = false;

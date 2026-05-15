@@ -3,11 +3,11 @@
 <!--Область с чаями-->
 
 
-  <div class="container py-5">
+
+  <div class="container py-5 ">
     <h3 class="mb-5 text-center wow animate__swing">Наши чайные коллекции</h3>
 
     <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3">
-
 
       <div class="col" *ngFor="let product of products" >
         <div class="card shadow-sm wow animate__zoomIn">
@@ -23,20 +23,15 @@
         </div>
       </div>
 
-
-
-      <div *ngIf="loader" class="loader-bg">
-        <div class="loader">
-
-        </div>
-
-      </div>
-
-
-
-
     </div>
+
+
   </div>
+
+<div *ngIf="loader" class="loader-bg">
+  <div class="loader"></div>
+</div>
+
 
 
 
