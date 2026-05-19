@@ -10,10 +10,15 @@
       <p class="card-text">{{product?.description}}</p>
       <p class="card-text">Цена: {{product?.price}} руб.</p>
       <div class="d-flex justify-content-between align-items-center">
-        <button type="button" class="btn btn-primary px-5 hvr-hollow" routerLink="order-form">Купить</button>
+        <a type="button" class="btn btn-primary px-5 hvr-hollow" (click)="onClick()">Купить</a>
 
       </div>
     </div>
   </div>
 </div>
 </div>
+
+<div *ngIf="loader" class="loader-bg">
+  <div class="loader"></div>
+</div>
+

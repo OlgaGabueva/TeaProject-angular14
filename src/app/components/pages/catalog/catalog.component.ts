@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {TeaType} from "../../../types/tea.type";
-import {SaveSingleProductService} from "../../../services/save-single-product.service";
 import {tap} from "rxjs";
 import {HttpProductService} from "../../../services/product.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -13,8 +13,9 @@ import {HttpProductService} from "../../../services/product.service";
 export class CatalogComponent implements OnInit {
 
   constructor(
-               private SaveSingleProductService: SaveSingleProductService ,
-               private HttpProductService:HttpProductService) { }
+
+               private HttpProductService:HttpProductService,
+               private router: Router) { }
 
   products: TeaType[] = [];
   loader: boolean = false;
@@ -32,7 +33,7 @@ export class CatalogComponent implements OnInit {
       .subscribe(   {
           next: ( response:TeaType[] )=> {
             this.products = response;
-            console.log(this.products);
+
           },
             error: ( error )=> {
             console.log( error );
@@ -42,7 +43,7 @@ export class CatalogComponent implements OnInit {
   }
 
   onClick(product:TeaType) {
-    this.SaveSingleProductService.saveProduct(product);
+       this.router.navigate(['catalog/catalog-single-product'], {queryParams: {id: product.id}});
   }
 
 

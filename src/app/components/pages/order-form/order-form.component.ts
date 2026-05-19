@@ -1,11 +1,9 @@
 import {Component,  OnInit} from '@angular/core';
-import {TeaType} from "../../../types/tea.type";
 import {data} from "../../../types/data.type";
-import {SaveSingleProductService} from "../../../services/save-single-product.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
 import {tap} from "rxjs";
 import {HttpProductService} from "../../../services/product.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-order-form',
@@ -14,7 +12,7 @@ import {HttpProductService} from "../../../services/product.service";
 })
 export class OrderFormComponent implements OnInit {
 
-  product: TeaType | undefined;
+  title: string | undefined;
   data: data | undefined ;
 
   form_name:string;
@@ -24,9 +22,10 @@ export class OrderFormComponent implements OnInit {
 
 
 
-  constructor( private SaveSingleProductService:SaveSingleProductService,
+  constructor(
                private  HttpProductService: HttpProductService,
-               private fb: FormBuilder,) {
+               private fb: FormBuilder,
+               private activatedRoute:ActivatedRoute) {
     this.form_name = 'Сделать заказ';
 
   }
@@ -45,8 +44,14 @@ export class OrderFormComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.product = this.SaveSingleProductService.getProduct();
-    this.form.patchValue({ product_title: this.product.title  });
+
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.title = params['title'];
+      console.log(this.title);
+    })
+
+
+    this.form.patchValue({ product_title: this.title  });
     this.form.get('product_title')?.disable();
   }
 
@@ -63,7 +68,7 @@ export class OrderFormComponent implements OnInit {
         phone: this.form.value.phone,
         country: this.form.value.country,
         zip: this.form.value.index,
-        product: this.product?.title,
+        product: this.title,
         address: this.form.value.address,
         comment: this.form.value.comment,
       }
